@@ -1,3 +1,43 @@
 .main-content{
     margin-top: 50px;
 }
+.translucent{
+    background-color: rgba(255,255,255,0.5) !important;
+}
+
+.bucket{
+    height: 300px;
+    border:1px solid red;
+}
+
+.bucket .panel-heading{
+    width:100% !important;
+}
+.bucketlist{
+    padding: 0px !important;
+}
+
+.bucketlist li{
+    display: block;
+    font-size: 13px;
+    font-weight: lighter;
+    list-style: none;
+    width: 100%;
+    height: 30px !important;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    border: 1px solid grey;
+    padding: 5px;
+}
+
+.bucketlist li div{
+    padding: 5px;
+    width: 75% !important;
+    height: 30px;
+}
+.itemcheck{
+    zoom: 1.3;
+}
+.panel-heading{
+    height: 40pt;
+}
