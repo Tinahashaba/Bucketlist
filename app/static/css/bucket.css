@@ -41,3 +41,7 @@
 .panel-heading{
     height: 40pt;
 }
+.header{
+    margin: 0;
+    display: inline-block;
+}
