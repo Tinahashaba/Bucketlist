@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
     <link rel="stylesheet" href="../static/css/bucket.css">
     <meta charset="UTF-8">
-    <title>My Buckets</title>
+    <title>My BucketList</title>
 </head>
 <body>
 <nav class="nav navbar-inverse navbar-static-top">
@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand text-muted">BucketList</a>
+            <a href="#" class="navbar-brand text-muted">BucketList Items</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navaber-collapse">
@@ -32,15 +32,15 @@
     <div class="row bucket-page">
         <div class="col-md-12">
             <a href="#" class="btn btn-default btn-xl pull-left" data-toggle="modal" data-target="#create-bucket-modal">Add
-                Bucket</a>
+                Item</a>
         </div>
-        <h2 class="pull-left">Buckets</h2>
+        <h2 class="pull-left">Bucket List Items</h2>
     </div>
 
     <div class="table-condensed">
         <table class="table table-condensed">
             <tr>
-                <th>Bucket</th>
+                <th>Item</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -56,7 +56,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Create Bucket</h4>
+                    <h4 class="modal-title">Add Item</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -64,14 +64,14 @@
                             <form action="" class="form-horizontal" method="post">
                                 <div class="form-group">
                                     <div class="col-md-12 ">
-                                        <input type="text" class="form-control" placeholder="Bucket Title" name="name"
+                                        <input type="text" class="form-control" placeholder="Item Name" name="name"
                                                required>
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
                                     <div class="col-md-7 col-md-offset-2">
-                                        <input type="submit" class="btn btn-primary" value="Add Bucket">
+                                        <input type="submit" class="btn btn-primary" value="Add to Bucket">
                                     </div>
                                 </div>
 
