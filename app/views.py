@@ -3,8 +3,6 @@ from flask import render_template, request, redirect, url_for, session
 from app.modal import User, Bucket
 from app.application import Application
 
-bucket = Bucket('bucket_name', 'bucket_items')
-
 
 @app.route('/')
 def home():
@@ -63,17 +61,20 @@ def buckets():
         if title:
             if current_user.add_bucket(Bucket(application.random_id(), title)):
                 return redirect(url_for('buckets'))
-    return render_template('mybucket.html', error=error, buckets=current_user.buckets)
+    return render_template('mybucket.html', error=error, buckets=current_user.buckets, user=current_user)
 
 
-@app.route('/bucket/edit/<identify>')
+@app.route('/bucket/edit/<identify>', methods=['GET', 'POST'])
 def edit_bucket(identify):
     application = Application()
     current_user = application.current_user(session['email'])
     if not current_user:
         return redirect(url_for('login'))
+    bucket = current_user.get_user_bucket(identify)
+    if not buckets:
+        return redirect(url_for('buckets'))
     if request.method == 'POST':
-        pass
-    return render_template('')
-
+        if current_user.edit_bucket(identify, request.form['name']):
+            return redirect(url_for('buckets'))
+    return render_template('edit_bucket.html', user=current_user, bucket=bucket)
 

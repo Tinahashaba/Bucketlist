@@ -19,18 +19,22 @@ class User:
             self.buckets[bucket.id] = bucket
             return True
 
-    def edit_bucket(self, bucket):
+    def edit_bucket(self, bucketId, name):
         """
         Edit an item if it exists.
         :param bucket:
         :return:
         """
-        if bucket.id in self.buckets.keys():
-            buck = self.buckets[bucket.id]
-            buck.bucket_name = bucket.bucket_name
+        if bucketId in self.buckets.keys():
+            buck = self.buckets[bucketId]
+            buck.bucket_name = name
             return True
         return False
 
+    def get_user_bucket(self, bucketId):
+        if bucketId in self.buckets.keys():
+            return self.buckets[bucketId]
+        return False
 
 
 class Bucket:
