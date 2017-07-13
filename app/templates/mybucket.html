@@ -39,32 +39,57 @@
 
     <div class="row">
         {% if buckets %}
+            <div class="table-condensed">
+                <table class="table table-condensed">
+                    <tr>
+                        <th>Item</th>
+{#                        <th>Edit</th>#}
+{#                        <th>Delete</th>#}
+                    </tr>
+                    <tbody>
+                    {% for key, bucket in buckets.items() %}
+                        <tr>
+                            <td>{{ bucket.bucket_name }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
 
-            {% for key, bucket in buckets.items() %}
-                <div class="col-sm-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><a href="#" class="btn btn-default btn-xs pull-right"
-                                                      data-toggle="modal"
-                                                      data-target="#create-item-modal">Add
-                            Item</a>
-                            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-                            <button><i class="fa fa-pencil" aria-hidden="true"> </i></button>
-                            <h3 class="header">{{ bucket.name }}</h3>
+        <!--modal start-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="create-bucket-modal">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <div class="col-md-12 ">
+                                            <input type="text" class="form-control" placeholder="Item Name" name="name"
+                                                   required>
+                                        </div>
+                                    </div>
 
-                        </div>
-                        <div class="panel-body">
-                            <ul class="bucketlist">
-                                <li><input type="checkbox" class="pull-left itemcheck">
-                                    <div class="pull-left">{{ bucket.name }}</div>
-                                    <button><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
+                                    <div class="modal-footer">
+                                        <div class="col-md-7 col-md-offset-2">
+                                            <input type="submit" class="btn btn-primary" value="Add to Bucket">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        {% endif %}
+            </div>
+        </div>
     </div>
 
 
