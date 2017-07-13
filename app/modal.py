@@ -8,11 +8,29 @@ class User:
         self.buckets = {}
 
     def add_bucket(self, bucket):
+        """
+        Adding a user to the dictionary
+        :param bucket:
+        :return:
+        """
         if bucket.id in self.buckets.keys():
             return False
         else:
             self.buckets[bucket.id] = bucket
             return True
+
+    def edit_bucket(self, bucket):
+        """
+        Edit an item if it exists.
+        :param bucket:
+        :return:
+        """
+        if bucket.id in self.buckets.keys():
+            buck = self.buckets[bucket.id]
+            buck.bucket_name = bucket.bucket_name
+            return True
+        return False
+
 
 
 class Bucket:

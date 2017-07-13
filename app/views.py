@@ -64,3 +64,16 @@ def buckets():
             if current_user.add_bucket(Bucket(application.random_id(), title)):
                 return redirect(url_for('buckets'))
     return render_template('mybucket.html', error=error, buckets=current_user.buckets)
+
+
+@app.route('/bucket/edit/<identify>')
+def edit_bucket(identify):
+    application = Application()
+    current_user = application.current_user(session['email'])
+    if not current_user:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        pass
+    return render_template('')
+
+
