@@ -1,3 +1,7 @@
+import random
+import string
+
+
 class Application:
     users = {}
 
@@ -22,3 +26,15 @@ class Application:
         if email in self.users:
             return self.users[email].password == password
         return False
+
+    def current_user(self, email):
+        if email in self.users:
+            return self.users[email]
+        return False
+
+    def random_id(self):
+        """
+        Generates a random key/Id
+        :return:
+        """
+        return ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(4)])
