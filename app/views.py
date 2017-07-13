@@ -78,3 +78,17 @@ def edit_bucket(identify):
             return redirect(url_for('buckets'))
     return render_template('edit_bucket.html', user=current_user, bucket=bucket)
 
+
+@app.route('/bucket/delete/<identify>', methods=['GET', 'POST'])
+def delete_bucket(identify):
+    application = Application()
+    current_user = application.current_user(session['email'])
+    if not current_user:
+        return redirect(url_for('login'))
+    bucket = current_user.get_user_bucket(identify)
+    if not buckets:
+        return redirect(url_for('buckets'))
+    if request.method == 'POST':
+        if current_user.delete(identify):
+            return redirect(url_for('buckets'))
+    return render_template('delete_bucket.html', user=current_user, bucket=bucket)

@@ -22,6 +22,8 @@ class User:
     def edit_bucket(self, bucketId, name):
         """
         Edit an item if it exists.
+        :param name:
+        :param bucketId:
         :param bucket:
         :return:
         """
@@ -32,8 +34,24 @@ class User:
         return False
 
     def get_user_bucket(self, bucketId):
+        """
+
+        :param bucketId:
+        :return:
+        """
         if bucketId in self.buckets.keys():
             return self.buckets[bucketId]
+        return False
+
+    def delete(self, bucketId):
+        """
+
+        :param bucketId:
+        :return:
+        """
+        if bucketId in self.buckets.keys():
+            self.buckets.pop(bucketId)
+            return True
         return False
 
 
