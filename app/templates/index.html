@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../static/css/bucket.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body style="background-image: url('../static/img/dream4.PNG');background-repeat: no-repeat;background-size: 100%;" >
+
+
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-7">
+            <h1 style="font-style: italic; font-size: 50pt">
+                Bucketlist
+            </h1>
+            <p style="font-size: 20pt">
+                A dream written down with a date is a goal, let us track your goals for you.
+            </p>
+
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default main-content">
+                <div class="panel-body">
+                    <div class="panel-heading">Login</div>
+                    <form action="{{ url_for('login') }}" method="post">
+                        <div class="form-group">
+                            <label for="enter email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="enter email" placeholder="Email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="Password" placeholder="Password"  name="password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                 <a  class="btn btn-success" href="{{ url_for('register') }}">CREATE ACCOUNT</a>
+                            </div>
+                            <div class="col-md-6">
+
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
