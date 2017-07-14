@@ -123,3 +123,12 @@ def items(identifier):
     if not bucket:
         return redirect(url_for('buckets'))
     return render_template('items.html', bucket=bucket)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    The page to return in case a route is not defined.
+    :param e:
+    :return:
+    """
+    return render_template('404.html'), 404
