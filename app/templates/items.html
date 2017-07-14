@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand text-muted">BucketList Items</a>
+            <a href="#" class="navbar-brand text-muted">Bucket Items</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navaber-collapse">
@@ -32,13 +32,13 @@
     <div class="row bucket-page">
         <div class="col-md-12">
             <a href="" class="btn btn-default btn-xl pull-left" data-toggle="modal" data-target="#create-bucket">Add
-                Bucket</a>
+                Item</a>
         </div>
-        <h2 class="pull-left">Bucket List Items</h2>
+        <h2 class="pull-left">Bucket Items</h2>
     </div>
 
     <div class="row">
-        {% if buckets %}
+        {% if bucket %}
             <div class="table-condensed">
                 <table class="table table-condensed">
                     <tr>
@@ -47,12 +47,12 @@
                         <th>Delete</th>
                     </tr>
                     <tbody>
-                    {% for key, bucket in buckets.items() %}
+                    {% for key, item in bucket.items.items() %}
                         <tr>
-                            <td><a href="{{ url_for('items', identifier=bucket.id) }}">{{ bucket.bucket_name }}</a></td>
-                            <td><a href="{{ url_for('edit_bucket', identify=bucket.id) }}"><i
+                            <td>{{ item.name }}</td>
+                            <td><a href=""><i
                                     class="glyphicon glyphicon-edit"></i></a></td>
-                            <td><a href="{{ url_for('delete_bucket', identify=bucket.id) }}"><i
+                            <td><a href=""><i
                                     class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
                     {% endfor %}
@@ -106,14 +106,14 @@
                     <h4 class="modal-title">Create Bucket</h4>
                 </div>
 
-                <form action="{{ url_for('buckets') }}" method="post">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="bucketname">Bucket Name</label>
                         <input type="text" class="form-control" id="bucketname" placeholder="Name" name="title">
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save Bucket</button>
+                        <button type="submit" class="btn btn-primary">Save Item</button>
                     </div>
                 </form>
 

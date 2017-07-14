@@ -51,6 +51,10 @@ def login():
 
 @app.route('/buckets', methods=['GET', 'POST'])
 def buckets():
+    """
+
+    :return:
+    """
     application = Application()
     current_user = application.current_user(session['email'])
     if not current_user:
@@ -66,12 +70,17 @@ def buckets():
 
 @app.route('/bucket/edit/<identify>', methods=['GET', 'POST'])
 def edit_bucket(identify):
+    """
+
+    :param identify:
+    :return:
+    """
     application = Application()
     current_user = application.current_user(session['email'])
     if not current_user:
         return redirect(url_for('login'))
     bucket = current_user.get_user_bucket(identify)
-    if not buckets:
+    if not bucket:
         return redirect(url_for('buckets'))
     if request.method == 'POST':
         if current_user.edit_bucket(identify, request.form['name']):
@@ -81,14 +90,36 @@ def edit_bucket(identify):
 
 @app.route('/bucket/delete/<identify>', methods=['GET', 'POST'])
 def delete_bucket(identify):
+    """
+
+    :param identify:
+    :return:
+    """
     application = Application()
     current_user = application.current_user(session['email'])
     if not current_user:
         return redirect(url_for('login'))
     bucket = current_user.get_user_bucket(identify)
-    if not buckets:
+    if not bucket:
         return redirect(url_for('buckets'))
     if request.method == 'POST':
         if current_user.delete(identify):
             return redirect(url_for('buckets'))
     return render_template('delete_bucket.html', user=current_user, bucket=bucket)
+
+
+@app.route('/bucket/items/<identifier>')
+def items(identifier):
+    """
+
+    :param identifier:
+    :return:
+    """
+    application = Application()
+    current_user = application.current_user(session['email'])
+    if not current_user:
+        return redirect(url_for('login'))
+    bucket = current_user.get_user_bucket(identifier)
+    if not bucket:
+        return redirect(url_for('buckets'))
+    return render_template('items.html', bucket=bucket)

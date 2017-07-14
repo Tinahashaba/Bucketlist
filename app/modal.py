@@ -59,9 +59,21 @@ class Bucket:
     def __init__(self, bucket_id, bucket_name):
         self.bucket_name = bucket_name
         self.id = bucket_id
+        self.items = {}
+
+    def add_item(self, item):
+        """
+
+        :param item:
+        :return:
+        """
+        if item.id not in self.items.keys():
+            self.items[item.id] = item
+            return True
+        return False
 
 
 class BucketActivity:
-    def __init__(self, bucket_name, bucket_items):
-        self.bucket_name = bucket_name
-        self.bucket_items = bucket_items
+    def __init__(self, identifier, name):
+        self.id = identifier
+        self.bucket_name = name
