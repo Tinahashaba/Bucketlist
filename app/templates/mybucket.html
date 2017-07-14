@@ -1,4 +1,5 @@
-<html lang="en" class="gr__localhost"><head>
+<html lang="en" class="gr__localhost">
+<head>
     <link rel="stylesheet" href="../static/css/bootstrap.css">
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
     <link rel="stylesheet" href="../static/css/bucket.css">
@@ -15,169 +16,116 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand text-muted">BucketList Items</a>
+            <a href="#" class="navbar-brand text-muted">BucketList</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navaber-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="login.html">Tinah Ashaba</a></li>
+                <li class="active"><a href="{{ url_for('login') }}">Tinah Ashaba</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="row">
-
-</div>
 
 <div class="container main-content">
     <div class="row bucket-page">
         <div class="col-md-12">
-            <a href="#" class="btn btn-default btn-xl pull-left" data-toggle="modal" data-target="#create-bucket-modal">Add
-                Item</a>
+            <a href="" class="btn btn-default btn-xl pull-left" data-toggle="modal" data-target="#create-bucket">Add
+                Bucket</a>
         </div>
-        <h2 class="pull-left">Bucket List Items</h2>
+        <h2 class="pull-left">Bucket List</h2>
     </div>
 
     <div class="row">
-        <div class="col-sm-3 ">
-            <div class="panel panel-default">
-                <div class="panel-heading"> <a href="#" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#create-item-modal">Add
-                Item</a>
-                       <i class="fa fa-times" aria-hidden="true"></i>
-                     <i class="fa fa-pencil" aria-hidden="true"> </i>
-                    <h3 class="header">Travel</h3>
-
-                </div>
-                <div class="panel-body">
-                    <ul class="bucketlist">
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item One</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item two</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item three</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-
-                    </ul>
-                </div>
+        {% if buckets %}
+            <div class="table-condensed">
+                <table class="table table-condensed">
+                    <tr>
+                        <th>Item</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody>
+                    {% for key, bucket in buckets.items() %}
+                        <tr>
+                            <td><a href="{{ url_for('items', identifier=bucket.id) }}">{{ bucket.bucket_name }}</a></td>
+                            <td><a href="{{ url_for('edit_bucket', identify=bucket.id) }}"><i
+                                    class="glyphicon glyphicon-edit"></i></a></td>
+                            <td><a href="{{ url_for('delete_bucket', identify=bucket.id) }}"><i
+                                    class="glyphicon glyphicon-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-        </div>
+        {% endif %}
 
-        <div class="col-sm-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                     <a href="#" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#create-item-modal">Add
-                Item</a>
-                       <i class="fa fa-times" aria-hidden="true"></i>
-                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                     <h3 class="header">Travel</h3>
+        <!--modal start-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="create-bucket-modal">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <div class="col-md-12 ">
+                                            <input type="text" class="form-control" placeholder="Item Name" name="name"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class="col-md-7 col-md-offset-2">
+                                            <input type="submit" class="btn btn-primary" value="Add to Bucket">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <ul class="bucketlist">
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item One</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item two</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item three</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
-            </div>
-
-
-        <div class="col-sm-3">
-            <div>
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#create-item-modal">Add
-                Item</a>
-                       <i class="fa fa-times" aria-hidden="true"></i>
-                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                     <h3 class="header">Travel</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="bucketlist">
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item One</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item two</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item three</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div>
-        <div class="panel panel-default">
-                <div class="panel-heading"> <a href="#" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#create-item-modal">Add
-                Item</a>
-                       <i class="fa fa-times" aria-hidden="true"></i>
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                     <h3 class="header">Travel</h3>
-
-                </div>
-                <div class="panel-body">
-                    <ul class="bucketlist">
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item One</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item two</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-                        <li><input type="checkbox" class="pull-left itemcheck">
-                            <div class="pull-left">Item three</div>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                               <i class="fa fa-times" aria-hidden="true"></i>
-                        </li>
-
-                                            </ul>
-                </div>
-            </div>
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="create-bucket">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create Bucket</h4>
+                </div>
+
+                <form action="{{ url_for('buckets') }}" method="post">
+                    <div class="form-group">
+                        <label for="bucketname">Bucket Name</label>
+                        <input type="text" class="form-control" id="bucketname" placeholder="Name" name="title">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save Bucket</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
 <script src="../static/js/jquery.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 
-</body></html>
+</body>
+</html>
